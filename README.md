@@ -12,22 +12,22 @@ This codebase includes instructions on how to access, download, and analyse CORD
 
 - Clone the repositry directly from github:
 
-    $ git clone https://github.com/Jonniebarnsley/Pyrenees
-    $ cd Pyrenees
+        $ git clone https://github.com/Jonniebarnsley/Pyrenees
+        $ cd Pyrenees
 
 - Create new conda environment with all required dependencies using cordex.yml
 
-    $ conda env create -f cordex.yml
-    $ conda activate cordex
+        $ conda env create -f cordex.yml
+        $ conda activate cordex
     
 - Create an ESGF account with the German Climate Computing Centre (https://esgf-data.dkrz.de/user/add/?next=http://esgf-data.dkrz.de/projects/esgf-dkrz/), taking note of your OpenID and password as you do so.
 - Apply for CORDEX access (https://esg-dn1.nsc.liu.se/ac/subscribe/CORDEX_Research) – you may need to try this multiple times before your account is flagged for access.
 
 - Set some environment variables for your ESGF username, password, and the directory in which you want to store the CORDEX data:
 
-    export ESGF_USERNAME=some_username
-    export ESGF_PASSWORD=some_password
-    export DATA_HOME=/path/to/data
+        export ESGF_USERNAME=some_username
+        export ESGF_PASSWORD=some_password
+        export DATA_HOME=/path/to/data
 
 ## Data
 
