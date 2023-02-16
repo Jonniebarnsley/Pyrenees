@@ -4,4 +4,4 @@ Collaborative codebase to investigate the present and future Pyrenees climate in
 
 ## Data
 
-Temporarily available at https://we.tl/t-cfi8zefygK
+Small subset temporarily available at https://we.tl/t-cfi8zefygK
