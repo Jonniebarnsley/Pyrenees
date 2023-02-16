@@ -4,9 +4,6 @@ import libs.download as dl
 from pyesgf.logon import LogonManager
 from pyesgf.search import SearchConnection
 
-import nest_asyncio
-nest_asyncio.apply()
-
 queries = {
     'project': ['CORDEX'],
     'domain': ['EUR-11'],
