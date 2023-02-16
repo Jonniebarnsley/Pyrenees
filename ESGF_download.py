@@ -1,11 +1,6 @@
 import os
 import ssl
-import pyesgf
-import aiohttp
-import asyncio
-import xarray as xr
 import libs.download as dl
-from itertools import product
 from pyesgf.logon import LogonManager
 from pyesgf.search import SearchConnection
 
