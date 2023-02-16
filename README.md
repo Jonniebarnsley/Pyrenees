@@ -35,4 +35,4 @@ To download tas and pr data for the historical, rcp26 and rcp85 experiments, sim
 
         $ python ESGF_download.py
         
-Or, to access different datasets, follow the instructions in ESGF_download.ipynb to customise your download.
+Or, to access different datasets, follow the instructions in Notebooks/ESGF_download.ipynb to customise your download.
