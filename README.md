@@ -25,14 +25,14 @@ This codebase includes instructions on how to access, download, and analyse CORD
 
 - Set some environment variables for your ESGF username, password, and the directory in which you want to store the CORDEX data:
 
-        export ESGF_USERNAME=some_username
-        export ESGF_PASSWORD=some_password
-        export DATA_HOME=/path/to/data
+        $ export ESGF_USERNAME=some_username
+        $ export ESGF_PASSWORD=some_password
+        $ export DATA_HOME=/path/to/data
 
 ## Data
 
 To download tas and pr data for the historical, rcp26 and rcp85 experiments, simply type:
 
-        python ESGF_download.py
+        $ python ESGF_download.py
         
 Or, to access different datasets, follow the instructions in ESGF_download.ipynb to customise your download.
