@@ -8,6 +8,9 @@ from itertools import product
 import nest_asyncio
 nest_asyncio.apply()
 
+def test():
+    print('working!')
+
 def generate_dataset_local_path(
             dataset: pyesgf.search.results.DatasetResult, 
             home_path: str
@@ -25,9 +28,9 @@ def generate_dataset_local_path(
 
 async def download_file(
             session: aiohttp.ClientSession, 
-            file: pyesgf.search.results.FileResult, 
-            local_directory: str,
-            sslcontext: ssl.SSLContext
+            file: pyesgf.search.results.FileResult,
+            ssl: ssl.SSLContext,
+            local_directory: str
     ):
     '''
     Coroutine which takes a aiohttp client session and pyesgf file object and downloads it to a local directory
@@ -44,7 +47,7 @@ async def download_file(
         return
 
     # open client session
-    async with session.request('get', url, ssl=sslcontext) as response:
+    async with session.request('get', url, ssl=ssl) as response:
         
         temp_filepath = filepath+'.inprogress' # temporary filename whilst downloading
         chunk_size = 2048
@@ -55,7 +58,8 @@ async def download_file(
 
 async def download_multiple(
             loop: asyncio.unix_events._UnixSelectorEventLoop, 
-            files: pyesgf.search.results.ResultSet, 
+            files: pyesgf.search.results.ResultSet,
+            ssl: ssl.SSLContext,
             local_directory: str
     ):
     '''
@@ -63,7 +67,7 @@ async def download_multiple(
     a local directory. 
     '''
     async with aiohttp.ClientSession(loop=loop) as session:
-        tasks = [download_file(session, file, local_directory) for file in files]
+        tasks = [download_file(session, file, ssl, local_directory) for file in files]
         await asyncio.gather(*tasks)
 
 def remove_incomplete_files(directory):
@@ -80,7 +84,7 @@ def remove_incomplete_files(directory):
 def download_dataset(
             dataset: pyesgf.search.results.DatasetResult, 
             local_path: str,
-            verbose: bool = False
+            ssl: ssl.SSLContext
     ):
     '''
     Takes pyesgf dataset object, creates local directory for dataset to be stored, extracts file objects
@@ -97,19 +101,18 @@ def download_dataset(
     # create loop for asynchronous downloads
     loop = asyncio.get_event_loop()
     try:
-        loop.run_until_complete(download_multiple(loop, files, directory))
-        verbose and print('---> done!')
+        loop.run_until_complete(download_multiple(loop, files, ssl, directory))
+        print('---> done!')
         return True
     except Exception as err:
-        verbose and print('\n\tencountered an error:', repr(err))
+        print('\n\tencountered an error:', repr(err))
         remove_incomplete_files(directory)
         return False
 
 def download_ensemble(
             context: pyesgf.search.context.DatasetSearchContext,
-            local_path: str,
-            verbose: bool = False
-            
+            ssl: ssl.SSLContext,
+            local_path: str
     ):
     ''' 
     Takes a pyesgf context object and downloads all available datasets that satisfy the constraints of
@@ -125,10 +128,10 @@ def download_ensemble(
 
 
     for i, dataset in enumerate(results):
-        verbose and print('downloading {} of {}: {}'.format(i+1, len(results), dataset.dataset_id), end=' ')
+        print('downloading {} of {}: {}'.format(i+1, len(results), dataset.dataset_id), end=' ')
 
         try:
-            success = download_dataset(dataset, local_path, verbose) # True if all files downloaded successfully
+            success = download_dataset(dataset, local_path, ssl) # True if all files downloaded successfully
             if success:
                 successfully_downloaded.add(dataset.dataset_id)
             else:
@@ -148,7 +151,10 @@ def download_ensemble(
         'errors': encountered_errors
     }
 
-def make_multiple_queries(queries: dict):
+def make_multiple_queries(
+            queries: dict, 
+            conn: pyesgf.search.connection.SearchConnection
+    ):
     '''
     Takes a queries dictionary with ESGF facets as keys and lists of strings as values.
     Prints a table of all configurations of query and the number of datasets that match.
@@ -174,31 +180,34 @@ def make_multiple_queries(queries: dict):
 
     return contexts
 
-def download_multiple_ensembles(queries:dict, verbose:bool=False):
+def download_multiple_ensembles(
+            queries: dict, 
+            conn: pyesgf.search.connection.SearchConnection, 
+            ssl: ssl.SSLContext,
+            local_path: str
+    ):
     '''
     Takes a queries dictionary in the same form as make_multiple_queries. Carries out said queries
     and then requests confirmation from the user to proceed. Following confirmation, continues to
     download each ensemble one by one
     '''
-    contexts = make_multiple_queries(queries)
+    contexts = make_multiple_queries(queries, conn)
     successfully_downloaded = set()
     encountered_errors = set()
 
-    print('querying ESGF...')
-    print('found the following datasets matching your queries:\n')
-
-    response = input('proceed? (y/n)')
+    response = input('\nproceed? (y/n): ')
     if response != 'y':
+        print('download cancelled')
         return
 
     for config in contexts:
 
-        print('\ndownloading next config:', *config)
         context = contexts[config]
-        downloads = download_ensemble(context, verbose)
-        for dataset in downloads:
-            successfully_downloaded |= dataset['success']
-            encountered_errors |= dataset['errors']
+        print('\ndownloading next config:', *config, '({} total datasets)'.format(context.hit_count))
+
+        downloads = download_ensemble(context, ssl, local_path)
+        successfully_downloaded |= downloads['success']
+        encountered_errors |= downloads['errors']
 
     print('\nall downloads now complete. successfully downloaded {} out of {} datasets.'.format(
                 len(successfully_downloaded),
