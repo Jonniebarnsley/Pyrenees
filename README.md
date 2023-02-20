@@ -31,9 +31,9 @@ This codebase includes instructions on how to access, download, and analyse CORD
 
 ## Data
 
-To download tas and pr data for the historical, rcp26 and rcp85 experiments, simply type:
+To download tas and pr data for the historical, rcp26 and rcp85 experiments, simply enter:
 
-        $ python ESGF_download.py
+        $ python download.py
         
 Or, to access different datasets, follow the instructions in Notebooks/ESGF_download_tutorial.ipynb to customise your download.
 
