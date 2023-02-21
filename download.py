@@ -1,6 +1,6 @@
 import os
 import ssl
-import libs.download as dl
+import libs.downloader as dl
 from pyesgf.logon import LogonManager
 from pyesgf.search import SearchConnection
 
