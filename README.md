@@ -10,7 +10,7 @@ CORDEX is an internationally coordinated effort to produce high-resolution regio
 
 We would love to run a climate model as part of our workshop, but I unfortunately forgot to pack my supercomputer, so I'm afraid this workshop is limited to analysing the output data of climate models. This means there's slightly less room for model tweaking and fun exploration, but hopefully you can get a sense of what climate models are doing and how we use them to investigate future climates.
 
-# Instructions
+### Instructions
 
 No downloads or installations are required to run this practical. All the notebooks, data, and software is available in a binder, which can be accessed at the following address:
 
