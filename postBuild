@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget -O data.zip "https://www.dropbox.com/scl/fo/niyesrjbnrlag55r76k5l/h?dl=1&rlkey=2snfk5hdjrowijyvh10n3fjhw"
+unzip data.zip
