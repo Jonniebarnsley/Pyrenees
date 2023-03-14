@@ -6,35 +6,12 @@ Collaborative codebase to investigate the present and future Pyrenees climate in
 
 CORDEX is an internationally coordinated effort to produce high-resolution regional climate model data for several of the world's key regions. Boundary conditions for the regions are provided by an ensemble of General Circulation Models (GCMs), with high-resolution Regional Climate Models (RCMs) handling the dynamics within the region. The project has standardised a number of experiments for each GCM-RCM pair to run, including a historical run and one for each Representative Concentration Pathway (RCP). The full dataset can be browsed manually at https://esgf-data.dkrz.de/search/cordex-dkrz/. For the Pyrenees, the region of interest has the code 'EUR-11'.
 
-This codebase includes instructions on how to access, download, and analyse CORDEX data, allowing the user to reproduce figures from the 2023 London NERC DTP Field Trip field guide.
+## Field Trip Workshop
 
-## Setup
+We would love to run a climate model as part of our workshop, but I unfortunately forgot to pack my supercomputer, so I'm afraid this workshop is limited to analysing the output data of climate models. This means there's slightly less room for model tweaking and fun exploration, but hopefully you can get a sense of what climate models are doing and how we use them to investigate future climates.
 
-- Clone the repositry directly from github:
+# Instructions
 
-        $ git clone https://github.com/Jonniebarnsley/Pyrenees
-        $ cd Pyrenees
+No downloads or installations are required to run this practical. All the notebooks, data, and software is available in a binder, which can be accessed at the following address:
 
-- Create new conda environment with all required dependencies using cordex.yml
-
-        $ conda env create -f cordex.yml
-        $ conda activate cordex
-    
-- Create an ESGF account with the German Climate Computing Centre (https://esgf-data.dkrz.de/user/add/?next=http://esgf-data.dkrz.de/projects/esgf-dkrz/).
-- Apply for CORDEX access (https://esg-dn1.nsc.liu.se/ac/subscribe/CORDEX_Research) – you may need to try this multiple times before your account is flagged for access.
-
-- Set some environment variables for your ESGF username, password, and the directory in which you want to store the CORDEX data:
-
-        $ export ESGF_USERNAME=some_username
-        $ export ESGF_PASSWORD=some_password
-        $ export DATA_HOME=/path/to/data
-
-## Data
-
-To download tas and pr data for the historical, rcp26 and rcp85 experiments, simply use:
-
-        $ python download.py
-        
-Or, to access different datasets, follow the instructions in download_tutorial.ipynb to customise your download.
-
-NB: Some datasets are likely to be unavailable at any given time due to maintenance of the ESGF data nodes. If you encounter an error downloading the data, try again a day or two later to see if the problem has resolved. Running download.py again will skip any datasets already downloaded and continue with any missing datasets.
+Once you've accessed the binder, open the file `cordex_tutorial.ipynb` and click through the jupyter notebook. If you're not familiar with python, there's no need to think too much about the code and what it's doing. Simply read through the comments explaining what is going on and have a look at the plots generated. However, do feel free to tweak aspects of the code if you'd like to explore what is possible with geospatial data.
