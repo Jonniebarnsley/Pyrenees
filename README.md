@@ -12,6 +12,7 @@ We would love to run a climate model as part of our workshop, but I unfortunatel
 
 ### Instructions
 
-No downloads or installations are required to run this practical. All the notebooks, data, and software is available in a binder, which can be accessed at the following address:
+No downloads or installations are required to run this practical. All the notebooks, data, and software is available in a binder, which can be accessed at https://mybinder.org/v2/gh/Jonniebarnsley/Pyrenees/HEAD.
+
 
 Once you've accessed the binder, open the file `cordex_workshop.ipynb` and click through the jupyter notebook. If you're not familiar with python, there's no need to think too much about the code and what it's doing. Simply read through the comments explaining what is going on and have a look at the plots generated. However, do feel free to tweak aspects of the code if you'd like to explore what is possible with geospatial data.
