@@ -1,14 +1,21 @@
-# Pyrenees in CORDEX
+# Climate modelling workshops
 
-Collaborative codebase to investigate the present and future Pyrenees climate in the Coordinated Regional climate Downscaling Experiment (CORDEX).
+Hi and welcome back to everybody's favourite field trip activity – modelling! Today we're looking at climate models, that is mathematical models designed to represent aspects of the Earth's climate. Climate models come in all shapes and sizes, from very basic [box-models](https://en.wikipedia.org/wiki/Climate_model#Box_models) to sophisticated [General Circulation Models](https://en.wikipedia.org/wiki/General_circulation_model) (GCMs). The former can be run with a simple laptop, the latter are usually run on supercomputers such as NERC's very own [ARCHER2](https://www.archer2.ac.uk/). Unfortunately, I forgot to pack my supercomputer with me this week, so we're limited in how sophisticated we can get with this modelling exercise.
 
-## Introduction
+There are two workshops in this github repositry – which one most interests you most may depend on your personal area of research and your experience with the Python programming language. They are:
 
-CORDEX is an internationally coordinated effort to produce high-resolution regional climate model data for several of the world's key regions. Boundary conditions for the regions are provided by an ensemble of General Circulation Models (GCMs), with high-resolution Regional Climate Models (RCMs) handling the dynamics within the region. The project has standardised a number of experiments for each GCM-RCM pair to run, including a historical run and one for each Representative Concentration Pathway (RCP). The full dataset can be browsed manually at https://esgf-data.dkrz.de/search/cordex-dkrz/. For the Pyrenees, the region of interest has the code 'EUR-11'.
+- `cordex_workshop.ipynb` - Pyrenees climate projections in CORDEX, the Coordinated Regional climate Downscaling Experiment
+- `snowball_earth_workshop.ipynb` - Investigating the role of the ice-albedo feedback in glacial-interglacial cycles
 
-## Field Trip Workshop
+The CORDEX workshop doesn't include any real modelling per se, but looks at data produced by one of the most sophisticated climate models out there. The snowball Earth workshop takes a much simpler model, but allows for some fun tweaking of parameters if you're at all familiar with Python. Ultimately, both can be clicked through without giving too much thought to the code and you may only be interested in the outputs and what they can tell us about climate change. I promise not to be disappointed (much) if you opt for this approach.
 
-We would love to run a climate model as part of our workshop, but I unfortunately forgot to pack my supercomputer, so I'm afraid this workshop is limited to analysing the output data of climate models. This means there's slightly less room for model tweaking and fun exploration, but hopefully you can get a sense of what climate models are doing and how we use them to investigate future climates.
+Both workshops can be run in a Binder we've prepared at this link: https://mybinder.org/v2/gh/Jonniebarnsley/Pyrenees/HEAD.
+
+## CORDEX workshop
+
+CORDEX is an internationally coordinated effort to produce high-resolution regional climate model data for several of the world's key regions. Boundary conditions for the regions are provided by an ensemble of GCMs, with high-resolution Regional Climate Models (RCMs) handling the dynamics within the region. The project has standardised a number of experiments for each GCM-RCM pair to run, including a historical run and one for each Representative Concentration Pathway (RCP). The full dataset can be browsed manually at https://esgf-data.dkrz.de/search/cordex-dkrz/. For the Pyrenees, the region of interest has the code 'EUR-11'.
+
+This practical 
 
 ### Instructions
 
